@@ -1,0 +1,264 @@
+/* ========== DARK MODE STYLES ========== */
+:root {
+  --background-color: #121212;
+  --card-background: #1e1e1e;
+  --text-color: #e0e0e0;
+  --primary-color: #ffffff;
+  --secondary-color: #03dac6;
+  --hover-color: #777676;
+  --border-color: #3c3c3c;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Arial', sans-serif;
+  background-color: var(--background-color);
+  color: var(--text-color);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 100vh;
+  overflow-x: hidden;
+}
+
+/* ========== BLOC 1 : Fixe en haut (Titre, Input CSV, Bouton i) ========== */
+.header-container {
+  position: sticky;
+  top: 0;
+  width: 100%;
+  background-color: var(--background-color);
+  padding: 15px;
+  z-index: 50;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 2px solid var(--border-color);
+}
+
+.table-wrapper {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  width: 100%;
+}
+
+.logo-container {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px; /* Ajustez la marge selon vos besoins */
+}
+
+.logo:hover {
+  filter: grayscale(0%); /* Logo en couleur au survol */
+}
+
+.logo {
+  width: 200px; /* Ajustez la taille selon vos besoins */
+  height: auto;
+  filter: grayscale(100%); /* Logo en noir et blanc par défaut */
+  transition: filter 0.3s ease; /* Effet de transition */
+}
+
+.logo:hover {
+  filter: grayscale(0%); /* Logo en couleur au survol */
+}
+
+/* ========== BLOC 2 : Colonnes supprimées ========== */
+.fixed-removed-columns-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 200px;
+  min-height: 100px;
+  background-color: var(--card-background);
+  padding: 10px;
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  overflow-y: auto;
+  max-height: 80vh;
+  opacity: 1;
+  visibility: visible;
+  transition: opacity 0.3s ease-in-out, margin-bottom 0.3s ease-in-out;
+}
+
+.fixed-removed-columns-container .header {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  width: 100%;
+}
+
+.fixed-removed-columns-container .header .icon {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.fixed-removed-columns-container .header .left-icon {
+  left: 0px;
+}
+
+.fixed-removed-columns-container .header .right-icon {
+  right: 0px;
+}
+
+.fixed-removed-columns-container .header .title {
+  text-align: center;
+  flex: 1;
+}
+
+.fixed-removed-columns-container .restore-all-button {
+  width: 100%;
+  margin-top: 10px;
+}
+
+/* ========== Bloc 3 : Le tableau dynamique ========== */
+.table-container {
+  flex: 1;
+  overflow-x: auto;
+  max-height: 75vh;
+  padding-bottom: 10px;
+  transition: margin-left 0.3s ease-in-out;
+  border-radius: 8px;
+}
+
+/* ========== TABLE HEADER FIXE ========== */
+thead {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background-color: var(--card-background);
+}
+
+/* ========== TABLE STYLING ========== */
+table {
+  min-width: 1300px;
+  border-collapse: collapse;
+  background-color: var(--card-background);
+  border-radius: 10px;
+  color: var(--text-color);
+}
+
+th, td {
+  text-align: center;
+  padding: 10px;
+  border-bottom: 1px solid var(--border-color);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  min-width: 100px;
+}
+
+th {
+  font-weight: bold;
+  padding: 15px;
+  background-color: var(--primary-color);
+  position: sticky;
+  top: 0;
+  z-index: 20;
+}
+
+tr:hover td {
+  background-color: var(--hover-color);
+}
+
+/* ========== ZEBRA STRIPING ========== */
+.table-striped tbody tr:nth-child(odd) {
+  background-color: rgba(255, 255, 255, 0.05);
+}
+
+/* ========== SCROLLBARS ========== */
+.table-scroll::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+
+.table-scroll::-webkit-scrollbar-thumb {
+  background: var(--secondary-color);
+  border-radius: 4px;
+}
+
+.table-scroll::-webkit-scrollbar-track {
+  background: #222;
+}
+
+/* ========== RESPONSIVE DESIGN ========== */
+@media (max-width: 768px) {
+  .container {
+    width: 100%;
+    padding: 20px;
+  }
+  th, td {
+    padding: 10px;
+  }
+  .table-container {
+    overflow-x: auto;
+  }
+}
+
+/* ========== FIXED BUTTONS ========== */
+.fixed-buttons {
+  display: flex;
+  align-items: center;
+  position: absolute;
+  top: 0;
+  right: 10px;
+  z-index: 1000;
+  display: flex;
+  gap: 10px;
+}
+
+.fixed-buttons .btn {
+  margin-left: 10px; /* Ajoute un espacement entre les boutons */
+}
+
+/* ========== POPUP NOTE ========== */
+.popup-note {
+  position: fixed;
+  top: 60px;
+  right: 20px;
+  z-index: 1000;
+  background-color: var(--card-background);
+  border: 1px solid var(--border-color);
+  border-radius: 5px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  padding: 15px;
+  max-width: 300px;
+  font-size: 14px;
+}
+
+.popup-note-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.popup-note-content h2 {
+  font-size: 16px;
+  margin-bottom: 10px;
+}
+
+.popup-note-content p {
+  margin-bottom: 15px;
+  text-align: center;
+}
+
+.popup-note-content button {
+  align-self: flex-end;
+}
+
+/* ========== TRUNCATE CELL ========== */
+.truncate-cell {
+  max-width: 150px; /* Largeur maximale pour tronquer le texte */
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.truncate-cell:hover {
+  overflow: visible;
+  white-space: normal;
+  word-wrap: break-word;
+}
